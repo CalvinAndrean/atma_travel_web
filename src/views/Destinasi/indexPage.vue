@@ -21,8 +21,7 @@
               <router-link
                 :to="{ name: 'destinasi.create' }"
                 class="btn btn-md btn-success"
-                >TAMBAH DESTINASI</router-link
-              >
+                >TAMBAH DESTINASI</router-link>
               <table class="table table-striped table-bordered mt4">
                 <thead class="thead-dark">
                   <tr>
@@ -64,7 +63,7 @@
       //mounted
       onMounted(() => {
         //get API from Laravel Backend
-        axios.get("http://localhost:8000/api/destinasis")
+        axios.get("https://vvwxx.com/api/backend-atma_travel/public/api/destinasis")
           .then((response) => {
             //assign state posts with response data
             destinasis.value = response.data.data;

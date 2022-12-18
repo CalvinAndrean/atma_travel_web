@@ -1,11 +1,14 @@
 //import vue router
-import { createRouter, createWebHistory } from 'vue-router'
+import {
+    createRouter,
+    createWebHistory
+} from 'vue-router'
 //define a routes
 const routes = [{
     path: '/',
     name: 'beranda',
-    component: () => import('@/components/DashboardLayout.vue'), children:[
-        {
+    component: () => import('@/components/DashboardLayout.vue'),
+    children: [{
             path: "/destinasi",
             name: "destinasi.index",
             component: () =>
@@ -17,9 +20,20 @@ const routes = [{
             component: () =>
                 import('@/views/Destinasi/createPage.vue'),
         },
+        {
+            path: "/planner",
+            name: "planner.create",
+            component: () =>
+                import('@/views/Planner/createPage.vue'),
+        },
+        {
+            path: "/planner",
+            name: "planner.index",
+            component: () =>
+                import('@/views/Planner/indexPage.vue'),
+        },
     ],
-},
-]
+}, ]
 //create router
 const router = createRouter({
     history: createWebHistory(),
