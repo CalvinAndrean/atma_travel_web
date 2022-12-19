@@ -30,6 +30,11 @@
                         >Destinasi</router-link
                     >
                     </li>
+                    <li class="nav-item">
+                    <router-link :to="{ name: 'planner.index' }" class="nav-link"
+                        >Planner</router-link
+                    >
+                    </li>
                     <!-- <li class="nav-item">
                       <router-link :to="{ name: 'pegawai.index' }" class="nav-link"
                         >Pegawai</router-link
