@@ -56,7 +56,10 @@
 
                 <div class="form-group mb-3">
                   <input 
-                  type="file" 
+                  type="file"
+                  id="file"
+                  ref="file"
+                  @change="handleFileUpload()"
                   class="form-control-file" 
                   placeholder="Masukkan foto"/>
                   <!-- validation -->
@@ -89,37 +92,51 @@
         })
         //state validation
         const validation = ref([])
+        const file = ref(null)
+        const handleFileUpload = async() => {
+           // debugger;
+            console.log("selected file",file.value.files)
+            //Upload to server
+        }
   
         //vue router
         const router = useRouter()
   
         //method store
         function store() {
-          let nama = destinasi.nama_departemen
-          let total_rating = destinasi.nama_manager
-          let deskripsi = destinasi.jumlah_pegawai
-          axios.post('http://localhost:8000/api/destinasis', {
-            nama: nama,
-            total_rating: total_rating,
-            deskripsi: deskripsi
-          }).then(() => {
-        //redirect ke post index
+          const config = {
+            headers: {
+              'content-type': 'multipart/form-data'
+            }
+          }
+          let data = new FormData();
+          data.append('foto', file.value.files[0]);
+          data.append('nama', destinasi.nama);
+          data.append('total_rating', destinasi.total_rating);
+          data.append('deskripsi', destinasi.deskripsi);
+          console.log(file.value.files[0])
+          axios.post('http://localhost:8000/api/destinasis', data, config)
+          .then(() => {
+          //redirect ke post index
             router.push({
               name: 'destinasi.index'
             })
           }).catch(error => {
-        //assign state validation with error
+          //assign state validation with error
             validation.value = error.response.data
+            console.log(validation.value)
           })
         }
       //return
         return {
           destinasi,
           validation,
+          handleFileUpload,
           router,
+          file,
           store
         }
-      }
+      },
     }
   </script>
   <style>

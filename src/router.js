@@ -1,24 +1,39 @@
 //import vue router
 import { createRouter, createWebHistory } from 'vue-router'
+import LandingPage from '@/components/LandingPage.vue'
+import DashboardLayout from '@/components/DashboardLayout.vue'
+import DestinasiIndex from '@/views/Destinasi/indexPage.vue'
+import DestinasiCreate from '@/views/Destinasi/createPage.vue'
+import DestinasiEdit from '@/views/Destinasi/editPage.vue'
+
 //define a routes
-const routes = [{
-    path: '/',
-    name: 'beranda',
-    component: () => import('@/components/DashboardLayout.vue'), children:[
-        {
-            path: "/destinasi",
-            name: "destinasi.index",
-            component: () =>
-                import('@/views/Destinasi/indexPage.vue'),
-        },
-        {
-            path: "/destinasi",
-            name: "destinasi.create",
-            component: () =>
-                import('@/views/Destinasi/createPage.vue'),
-        },
-    ],
-},
+const routes = [
+    {
+        path: '/',
+        name: 'beranda',
+        component: LandingPage
+    },
+    {
+        path: '/Home',
+        name: 'Home',
+        component: DashboardLayout, children: [
+            {
+                path: '/destinasi',
+                name: 'destinasi.index',
+                component: DestinasiIndex
+            },
+            {
+                path: '/destinasi/create',
+                name: 'destinasi.create',
+                component: DestinasiCreate
+            },
+            {
+                path: '/destinasi/edit:id',
+                name: 'destinasi.edit',
+                component: DestinasiEdit
+            }
+        ]
+    }
 ]
 //create router
 const router = createRouter({
