@@ -37,7 +37,6 @@
                     <td>{{ destinasi.nama }}</td>
                     <td>{{ destinasi.total_rating }}</td>
                     <td>{{ destinasi.deskripsi }}</td>
-                    
                     <td class="text-center">
                       <router-link :to="{ name:'destinasi.edit', params: { id: destinasi.id } }" class="btn btn-sm btn-primary mr-1">
                           EDIT

@@ -26,7 +26,7 @@ const routes = [{
         component: RegisterPage
     },
     {
-        path: '/Home',
+        path: '/home',
         name: 'Home',
         component: DashboardLayout,
         children: [{
