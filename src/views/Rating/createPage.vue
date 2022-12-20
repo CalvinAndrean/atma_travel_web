@@ -1,3 +1,3 @@
 <template>
-  <h1>Rating Create Page</h1>
+  <h1>Rating Creat Page</h1>
 </template>
