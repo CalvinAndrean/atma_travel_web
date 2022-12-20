@@ -22,7 +22,7 @@
                 :to="{ name: 'destinasi.create' }"
                 class="btn btn-md btn-success"
                 >TAMBAH DESTINASI</router-link>
-              <table class="table table-striped table-bordered mt4">
+              <!-- <table class="table table-striped table-bordered mt4">
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">NAMA DESTINASI</th>
@@ -37,7 +37,7 @@
                     <td>{{ destinasi.nama }}</td>
                     <td>{{ destinasi.total_rating }}</td>
                     <td>{{ destinasi.deskripsi }}</td>
-                    <!-- <td><img :src="'http://127.0.0.1:8000/'+destinasi.foto" alt="foto"></td> -->
+                    
                     <td class="text-center">
                       <router-link :to="{ name:'destinasi.edit', params: { id: destinasi.id } }" class="btn btn-sm btn-primary mr-1">
                           EDIT
@@ -46,7 +46,7 @@
                     </td>
                   </tr>
                 </tbody>
-              </table>
+              </table> -->
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@
 
       <div v-for="(destinasi, id) in destinasis" :key="id" style="display: inline-block; padding: 10px;">
         <div class="card" style="width: 18rem;">
-          <img :src="'http://127.0.0.1:8000/'+destinasi.foto" alt="foto" style="width: 286px; height: 200px;">
+          <img :src="'http://localhost:8000/storage/users/'+destinasi.foto" alt="{{ destinasi.foto }}" style="width: 286px; height: 200px;">
           <div class="card-body">
             <h5 class="card-title">{{ destinasi.nama }}</h5>
             <p class="card-text">{{ destinasi.deskripsi }}</p>
@@ -72,9 +72,20 @@
       //reactive state
       let destinasis = ref([]);
       //mounted
+
+      const config = {
+          headers: {
+            'content-type': 'multipart/form-data',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+          }
+      }
+
+      const URL_LINK = "http://127.0.0.1:8000/api/destinasis"
+
       onMounted(() => {
         //get API from Laravel Backend
-        axios.get("https://vvwxx.com/api/backend-atma_travel/public/api/destinasis")
+        axios.get(URL_LINK, config)
           .then((response) => {
             //assign state posts with response data
             destinasis.value = response.data.data;
@@ -86,7 +97,7 @@
   
       function destinasiDelete(id) {
               //delete data post by ID
-              axios.delete(`http://localhost:8000/api/destinasis/${id}`)
+              axios.delete(`${URL_LINK}/${id}`)
               .then(() => {
                   //splice posts 
                   const index = this.destinasis.findIndex(destinasi => destinasi.id === id)

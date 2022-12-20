@@ -1,4 +1,6 @@
-import { createApp } from 'vue'
+import {
+  createApp
+} from 'vue'
 import App from './App.vue'
 //import router
 import router from './router'
@@ -7,7 +9,12 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'jquery/dist/jquery.min'
 import 'popper.js/dist/popper.min'
 import 'bootstrap/dist/js/bootstrap.min'
+
+import VueCookies from 'vue-cookies'
 const app = createApp(App)
+
+app.use(VueCookies)
+
 //use vue router
 app.use(router)
 app.mount('#app')

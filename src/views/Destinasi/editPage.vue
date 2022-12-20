@@ -84,6 +84,9 @@
   import axios from 'axios'
   export default {
     setup() {
+
+      axios.defaults.headers.common['Authorization'] = 'Bearer: ' + localStorage.getItem('token')
+
     //state departemen
       const destinasi = reactive({
         nama: '',
@@ -105,9 +108,11 @@
       const route = useRoute()
       const id = route.params.id
 
+      const URL_LINK = "http://127.0.0.1:8000/api/destinasis"
+
         onMounted(() => {
         //get API from Laravel Backend
-        axios.get(`http://localhost:8000/api/destinasis/${id}`)
+        axios.get(`${URL_LINK}/${id}`)
             .then((response) => {
             destinasi.nama = response.data.data.nama;
             destinasi.total_rating = response.data.data.total_rating;
@@ -123,7 +128,9 @@
       function update() {
         const config = {
           headers: {
-            'content-type': 'multipart/form-data'
+            'content-type': 'multipart/form-data',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
           }
         }
         let data = new FormData();
@@ -132,7 +139,7 @@
         data.append('total_rating', destinasi.total_rating);
         data.append('deskripsi', destinasi.deskripsi);
         console.log(file.value.files[0])
-        axios.put(`http://localhost:8000/api/destinasis/${route.params.id}`, data, config)
+        axios.put(`${URL_LINK}/${route.params.id}`, data, config)
         .then(() => {
         //redirect ke post index
           router.push({

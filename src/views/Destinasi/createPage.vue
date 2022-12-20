@@ -101,12 +101,16 @@
   
         //vue router
         const router = useRouter()
+
+        const URL_LINK = "http://127.0.0.1:8000/api/destinasis"
   
         //method store
         function store() {
           const config = {
             headers: {
-              'content-type': 'multipart/form-data'
+              'content-type': 'multipart/form-data',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
           }
           let data = new FormData();
@@ -115,7 +119,7 @@
           data.append('total_rating', destinasi.total_rating);
           data.append('deskripsi', destinasi.deskripsi);
           console.log(file.value.files[0])
-          axios.post('http://localhost:8000/api/destinasis', data, config)
+          axios.post(URL_LINK, data, config)
           .then(() => {
           //redirect ke post index
             router.push({
