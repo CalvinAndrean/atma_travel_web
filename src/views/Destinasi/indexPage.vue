@@ -96,7 +96,7 @@
   
       function destinasiDelete(id) {
               //delete data post by ID
-              axios.delete(`${URL_LINK}/${id}`)
+              axios.delete(`${URL_LINK}/${id}`, config)
               .then(() => {
                   //splice posts 
                   const index = this.destinasis.findIndex(destinasi => destinasi.id === id)

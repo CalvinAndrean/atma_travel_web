@@ -11,9 +11,8 @@
         <h5 class="card-title">{{planner.destinasi.nama}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">{{convertWaktu(planner.tgl)}}</h6>
         <p class="card-text">{{planner.note}}</p>
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
-        <!-- <a class="text-right position-absolute top-0 end-0"><i class="fas fa-pen"></i></a> -->
+        <router-link :to="{ name: 'planner.edit', params: { id: planner.id}}" class="card-link">Edit</router-link>
+        <a href="#" @click.prevent="postDelete(planner.id)" class="card-link">Delete</a>
       </div>
     </div>
   </div>
@@ -33,8 +32,18 @@ export default {
 
     let planners = ref([])
 
+    const config = {
+          headers: {
+            'content-type': 'multipart/form-data',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+          }
+      }
+
+    const URL_LINK = "http://127.0.0.1:8000/api/planners"
+
     onMounted(() => {
-      axios.get('https://vvwxx.com/api/backend-atma_travel/public/api/planners')
+      axios.get(URL_LINK, config)
       .then(response => {
         planners.value = response.data.data
       }).catch(error => {
@@ -43,10 +52,11 @@ export default {
     })
 
     function postDelete(id) {
-      axios.delete(`https://vvwxx.com/api/backend-atma_travel/public/api/planners/${id}`)
+      axios.delete(`${URL_LINK}/${id}`, config)
       .then(() => {
-        axios.get('https://vvwxx.com/api/backend-atma_travel/public/api/planners')
+        axios.get(URL_LINK, config)
         .then(response => {
+          alert("Data berhasil dihapus")
           planners.value = response.data.data
         }).catch(error => {
           console.log(error.response.data)
