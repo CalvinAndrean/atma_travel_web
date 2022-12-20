@@ -37,7 +37,6 @@
                     <td>{{ destinasi.nama }}</td>
                     <td>{{ destinasi.total_rating }}</td>
                     <td>{{ destinasi.deskripsi }}</td>
-                    <!-- <td><img :src="'http://127.0.0.1:8000/'+destinasi.foto" alt="foto"></td> -->
                     <td class="text-center">
                       <router-link :to="{ name:'destinasi.edit', params: { id: destinasi.id } }" class="btn btn-sm btn-primary mr-1">
                           EDIT
@@ -54,7 +53,7 @@
 
       <div v-for="(destinasi, id) in destinasis" :key="id" style="display: inline-block; padding: 10px;">
         <div class="card" style="width: 18rem;">
-          <img :src="'http://127.0.0.1:8000/'+destinasi.foto" alt="foto" style="width: 286px; height: 200px;">
+          <img :src="'https://vvwxx.com/api/backend-atma_travel/storage/destinasi/'+destinasi.foto" alt="foto" style="width: 286px; height: 200px;">
           <div class="card-body">
             <h5 class="card-title">{{ destinasi.nama }}</h5>
             <p class="card-text">{{ destinasi.deskripsi }}</p>
@@ -86,7 +85,7 @@
   
       function destinasiDelete(id) {
               //delete data post by ID
-              axios.delete(`http://localhost:8000/api/destinasis/${id}`)
+              axios.delete(`https://vvwxx.com/api/backend-atma_travel/public/api/destinasis/${id}`)
               .then(() => {
                   //splice posts 
                   const index = this.destinasis.findIndex(destinasi => destinasi.id === id)

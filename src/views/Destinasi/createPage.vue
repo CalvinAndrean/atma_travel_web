@@ -115,7 +115,7 @@
           data.append('total_rating', destinasi.total_rating);
           data.append('deskripsi', destinasi.deskripsi);
           console.log(file.value.files[0])
-          axios.post('http://localhost:8000/api/destinasis', data, config)
+          axios.post('https://vvwxx.com/api/backend-atma_travel/public/api/destinasis', data, config)
           .then(() => {
           //redirect ke post index
             router.push({
