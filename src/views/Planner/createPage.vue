@@ -19,8 +19,8 @@
                           <label class="form-label">Destinasi</label>
                           <input class="form-control" 
                           type="text" 
-                          v-model="planners.id_destinasi"
-                          placeholder="Destinasi">
+                          v-model="destinasi.nama"
+                          placeholder="Destinasi" readonly>
                         </div>
                       </div>
                       <div class="col-sm-6 col-md-6">
@@ -62,7 +62,7 @@
 <script>
 
 import axios from 'axios'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { onMounted, reactive, ref } from "vue";
 
   export default {
@@ -79,6 +79,9 @@ import { onMounted, reactive, ref } from "vue";
       const URL_LINK = "http://127.0.0.1:8000/api"
 
       let destinasi = ref([])
+      const route = useRoute()
+
+      const id_destinasi = localStorage.getItem('idDestinasi')
 
       const config = {
           headers: {
@@ -89,9 +92,11 @@ import { onMounted, reactive, ref } from "vue";
       }
 
       onMounted(() => {
-        axios.get(`${URL_LINK}/destinasis`, config)
+        console.log(id_destinasi)
+        axios.get(`${URL_LINK}/destinasis/${id_destinasi}`, config)
         .then(response => {
-          destinasi.value = response.data.data
+          destinasi.value = response.data.data;
+          planners.id_destinasi = destinasi.value.id
         }).catch(error => {
           console.log(error.response.data)
         })
@@ -99,7 +104,7 @@ import { onMounted, reactive, ref } from "vue";
 
       //state validation
       const validation = ref([])
-      //vu e router
+      //vue router
       const router = useRouter()
 
       function store() {
@@ -131,7 +136,9 @@ import { onMounted, reactive, ref } from "vue";
         planners,
         store,
         destinasi,
-        validation
+        validation,
+        route,
+        id_destinasi
       }
     }
 
