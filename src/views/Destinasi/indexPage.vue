@@ -58,8 +58,13 @@
             <p class="card-text">{{ destinasi.deskripsi }}</p>
             <router-link :to="{name: 'planner.index', params: { id: destinasi.id }}"><button class="btn btn-primary" style="margin-right: 10px;">Tambah plan</button></router-link>
             <router-link :to="{name: 'destinasirating.index', params: { id: destinasi.id }}"><button class="btn btn-light">Read more</button></router-link>
-            <router-link :to="{name: 'destinasi.edit', params: { id: destinasi.id }}"><button class="btn btn-primary" style="margin-right: 10px; margin-top: 10px;">Edit</button></router-link>
-            <button class="btn btn-danger" style="margin-top: 10px;" @click.prevent="postDelete(destinasi.id)">Delete</button>
+            
+            <div v-if="destinasi.id_user == id_user">
+              <router-link :to="{name: 'destinasi.edit', params: { id: destinasi.id }}"><button class="btn btn-primary" style="margin-right: 10px; margin-top: 10px;">Edit</button></router-link>
+
+              <button class="btn btn-danger" style="margin-top: 10px;" @click.prevent="postDelete(destinasi.id)">Delete</button>
+            </div>
+            
           </div>
         </div>
       </div>
@@ -74,6 +79,8 @@ import axios from "axios";
       //reactive state
       let destinasis = ref([]);
       //mounted
+
+      const id_user = localStorage.getItem('user')
 
       const config = {
           headers: {
@@ -115,6 +122,7 @@ import axios from "axios";
       return {
         destinasis,
         postDelete,
+        id_user
       };
     },
   };

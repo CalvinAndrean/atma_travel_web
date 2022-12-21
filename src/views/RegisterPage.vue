@@ -16,7 +16,7 @@
 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form1Example23">Username</label>
-                    <input v-model="users.username" type="password" id="form1Example23" class="form-control form-control-lg" placeholder="Masukkan username" />
+                    <input v-model="users.username" type="text" id="form1Example23" class="form-control form-control-lg" placeholder="Masukkan username" />
                 </div>
 
                 <!-- Email input -->

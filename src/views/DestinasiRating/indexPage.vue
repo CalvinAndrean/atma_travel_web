@@ -7,6 +7,7 @@
                     <div class="tab-pane fade active show" id="pills-reviews" role="tabpanel" aria-labelledby="pills-reviews-tab">
                         <div class="bg-white rounded shadow-sm p-4 mb-4 clearfix graph-star-rating">
                             <h5 class="mb-0 mb-4">Deskripsi Destinasi</h5>
+                            
                         </div>
                         
                         <div class="bg-white rounded shadow-sm p-4 mb-4 restaurant-detailed-ratings-and-reviews">
