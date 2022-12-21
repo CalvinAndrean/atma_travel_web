@@ -20,8 +20,7 @@
             <div class="card-body">
               <router-link
                 :to="{ name: 'destinasi.create' }"
-                class="btn btn-md btn-success"
-                >TAMBAH DESTINASI</router-link>
+                ><button class="btn btn-success">TAMBAH DESTINASI</button></router-link>
               <!-- <table class="table table-striped table-bordered mt4">
                 <thead class="thead-dark">
                   <tr>
@@ -57,14 +56,16 @@
           <div class="card-body">
             <h5 class="card-title">{{ destinasi.nama }}</h5>
             <p class="card-text">{{ destinasi.deskripsi }}</p>
-            <a href="#" class="btn btn-primary">Tambah plan</a>
+            <router-link :to="{name: 'planner.index', params: { id: destinasi.id }}"><button class="btn btn-primary" style="margin-right: 30px;">Tambah plan</button></router-link>
+            <router-link :to="{name: 'destinasirating.index', params: { id: destinasi.id }}"><button class="btn btn-light">Read more</button></router-link>
           </div>
         </div>
       </div>
     </div>
   </template>
       <script>
-  import axios from "axios";
+  // import router from "@/router";
+import axios from "axios";
   import { onMounted, ref } from "vue";
   export default {
     setup() {

@@ -4,6 +4,8 @@ import {
     createWebHistory
 } from 'vue-router'
 // import LandingPage from '@/components/LandingPage.vue'
+import DestinasiRatingIndex from '@/views/DestinasiRating/indexPage.vue'
+import Profile from '@/views/Profile/ProfilePage.vue'
 import DashboardLayout from '@/components/DashboardLayout.vue'
 import DestinasiIndex from '@/views/Destinasi/indexPage.vue'
 import DestinasiCreate from '@/views/Destinasi/createPage.vue'
@@ -16,6 +18,7 @@ import PlannerEdit from '@/views/Planner/editPage.vue'
 import LogoutPage from '@/views/LogoutPage.vue'
 // import DestinasiRatingIndex from '@views/DestinasiRating/indexPage.vue'
 // import ProfilePage from '@views/Profile/ProfilePage.vue'
+import RatingCreate from '@/views/Rating/createPage.vue'
 
 
 //define a routes
@@ -69,16 +72,20 @@ const routes = [{
                 component: PlannerCreate
             },
             {
-                // path: '/destinasi/rating',
-                // name: 'destinasirating.index',
-                // component: DestinasiRatingIndex
+                path: '/profile',
+                name: 'profile',
+                component: Profile
             },
             {
-                // path: '/profile',
-                // name: 'profile.index',
-                // component: ProfilePage
+                path: '/destinasi/rating',
+                name: 'destinasirating.index',
+                component: DestinasiRatingIndex
+            },
+            {
+                path: '/destinasi/rating/create',
+                name: 'rating.create',
+                component: RatingCreate
             }
-
         ]
     }
 ]

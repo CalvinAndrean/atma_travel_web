@@ -282,7 +282,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h2 class="h2-heading">Customer testimonials</h2>
-                </div>
+                </div>l
             </div>
             <div class="row">
                 <div class="col-lg-12">

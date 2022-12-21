@@ -41,7 +41,6 @@
                 email: '',
                 password: ''
             })
-
             const token = ref('')
             const message = ref('')
             const router = useRouter()
@@ -53,7 +52,6 @@
                     email: users.email,
                     password: users.password
                 }).then((response) => {
-
                     // save token to local storage
                     localStorage.setItem('token', response.data.access_token)
                     localStorage.setItem('user', response.data.user.id)
@@ -65,9 +63,7 @@
                             type: "success",
                             text: "Berhasil Login"
                         },
-                        
                     })
-
                 })
                 .catch(error => {
                     // alert(error.response.data.message)
@@ -76,7 +72,6 @@
                     validation.value = error.response.data.errors
                })
             }
-
             return {
                 login,
                 users,

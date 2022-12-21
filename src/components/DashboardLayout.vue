@@ -3,7 +3,7 @@
         <header
             class="navbar navbar-dark sticky-top bg-dark flex-mdnowrap p-0 shadow"
         >
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">VUE_B_0824</a>
+
             <button
             class="navbar-toggler position-absolute d-md-none collapsed"
             type="button"
@@ -33,6 +33,11 @@
                     <li class="nav-item">
                     <router-link :to="{ name: 'planner.index' }" class="nav-link"
                         >Planner</router-link
+                    >
+                    </li>
+                    <li class="nav-item">
+                    <router-link :to="{ name: 'profile' }" class="nav-link"
+                        >Profile</router-link
                     >
                     </li>
                     <!-- <li class="nav-item">
