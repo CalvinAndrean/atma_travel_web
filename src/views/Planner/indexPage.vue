@@ -57,7 +57,7 @@ export default {
     function postDelete(id) {
       axios.delete(`${URL_LINK}/planners/${id}`, config)
       .then(() => {
-        axios.get(URL_LINK, config)
+        axios.get(`${URL_LINK}/planners`, config)
         .then(response => {
           alert("Data berhasil dihapus")
           planners.value = response.data.data
