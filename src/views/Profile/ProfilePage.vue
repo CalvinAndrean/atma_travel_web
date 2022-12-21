@@ -61,6 +61,7 @@
                             <label class="form-label">Password</label>
                             <input class="form-control" 
                             type="text" 
+                            v-model="users.password"
                             placeholder="Password">
                           </div>
                         </div>
@@ -113,7 +114,8 @@
       //mounted
     //   const route = useRoute()
       const router = useRouter()
-    const validation = ref([])
+    // const validation = ref([])
+    // const route = useRoute()
     const file = ref(null)
     const handleFileUpload = async() => {
         // debugger;
@@ -125,8 +127,6 @@
 
       const config = {
           headers: {
-            'content-type': 'multipart/form-data',
-            'Accept': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem('token')
           }
       }
@@ -151,32 +151,54 @@
           });
       });
 
+      // function update() {
+      //   const config = {
+      //     headers: {
+      //       'Authorization': 'Bearer ' + localStorage.getItem('token')
+      //     }
+      //   }
+      //   let data = new FormData();
+      //   // data.append('image', file.value.files[0]);
+      //   data.append('name', users.name);
+      //   data.append('username', users.username);
+      //   data.append('email', users.email);
+      //   console.log(users.email)
+      //   data.append('password', users.password);
+      //   // console.log(file.value.files[0])
+      //   axios.put(`${URL_LINK}/${id}`, data, config)
+      //   .then(() => {
+      //   //redirect ke post index
+      //     router.push({
+      //       name: 'profile'
+      //     })
+      //   }).catch(error => {
+      //   //assign state validation with error
+      //     validation.value = error.response.data
+      //     console.log(validation.value)
+      //   })
+      // }
+
       function update() {
-        const config = {
-          headers: {
-            'content-type': 'multipart/form-data',
-            'Accept': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-          }
-        }
-        let data = new FormData();
-        // data.append('image', file.value.files[0]);
-        data.append('name', users.name);
-        data.append('username', users.username);
-        data.append('email', users.email);
-        console.log(users.email)
-        data.append('password', users.password);
-        // console.log(file.value.files[0])
-        axios.put(`${URL_LINK}/${id}`, data, config)
-        .then(() => {
-        //redirect ke post index
+        let name = users.name
+        let username = users.username
+        let email = users.email
+        let password = users.password
+        axios.put(`${URL_LINK}/${id}`, {
+          name: name,
+          username: username,
+          email: email,
+          password: password
+
+        }, config).then(() => {
           router.push({
-            name: 'profile'
+            name: 'profile',
+            params: {
+              type: "success",
+              text: "Data Berhasil Diedit"
+            }
           })
         }).catch(error => {
-        //assign state validation with error
-          validation.value = error.response.data
-          console.log(validation.value)
+          console.log(error.response.data)
         })
       }
       //return

@@ -35,6 +35,10 @@
                                                 </div>
                                                 <div class="reviews-members-body">
                                                     <p>{{ rating.komentar }}</p>
+                                                    <div v-if="id_user == rating.user.id">
+                                                        <button class="btn btn-primary" style="margin-right: 10px">Edit</button>
+                                                        <button class="btn btn-danger">Delete</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -173,7 +177,8 @@ import { reactive, ref, onMounted } from 'vue'
           ratings,
           validation,
           router,
-          destinasis
+          destinasis,
+          id_user
         }
       }
     }
