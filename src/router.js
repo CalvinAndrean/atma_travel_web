@@ -13,6 +13,7 @@ import RegisterPage from '@/views/RegisterPage.vue'
 import PlannerIndex from '@/views/Planner/indexPage.vue'
 import PlannerCreate from '@/views/Planner/createPage.vue'
 import PlannerEdit from '@/views/Planner/editPage.vue'
+import LogoutPage from '@/views/LogoutPage.vue'
 
 //define a routes
 const routes = [{
@@ -24,6 +25,11 @@ const routes = [{
         path: '/register',
         name: 'register',
         component: RegisterPage
+    },
+    {
+        path: '/logout',
+        name: 'logout',
+        component: LogoutPage
     },
     {
         path: '/home',

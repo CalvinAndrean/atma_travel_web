@@ -39,12 +39,12 @@
                       <router-link :to="{ name: 'pegawai.index' }" class="nav-link"
                         >Pegawai</router-link
                     >
-                    </li>
-                    <li class="nav-item">
-                      <router-link :to="{ name: 'proyek.index' }" class="nav-link"
-                        >Proyek</router-link
-                    >
                     </li> -->
+                    <li class="nav-item">
+                      <router-link :to="{ name: 'logout' }" class="nav-link"
+                        >Logout</router-link
+                    >
+                    </li> 
                 </ul>
                 </div>
             </nav>
