@@ -1,10 +1,10 @@
 <template>
   <div class="container mt-5">
     <div class="card-body">
-      <!-- <router-link
+      <router-link
           :to="{ name: 'planner.create' }"
           class="btn btn-md btn-light"
-          >TAMBAH PLAN</router-link> -->
+          >TAMBAH PLAN</router-link>
     </div>
     <div v-for="(planner) in planners" :key="planner.id" class="card mx-auto mb-3 position-relative" style="width: 46rem;">
       <div class="card-body">

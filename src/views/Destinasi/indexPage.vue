@@ -56,7 +56,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ destinasi.nama }}</h5>
             <p class="card-text">{{ destinasi.deskripsi }}</p>
-            <router-link :to="{name: 'planner.index', params: { id: destinasi.id }}"><button class="btn btn-primary" style="margin-right: 10px;">Tambah plan</button></router-link>
+            <router-link :to="{name: 'planner.create', params: { id: destinasi.id }}"><button class="btn btn-primary" style="margin-right: 10px;">Tambah plan</button></router-link>
             <router-link :to="{name: 'destinasirating.index', params: { id: destinasi.id }}"><button class="btn btn-light">Read more</button></router-link>
             
             <div v-if="destinasi.id_user == id_user">

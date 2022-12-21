@@ -99,7 +99,7 @@ import { onMounted, reactive, ref } from "vue";
 
       //state validation
       const validation = ref([])
-      //vue router
+      //vu e router
       const router = useRouter()
 
       function store() {
