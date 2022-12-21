@@ -56,8 +56,10 @@
           <div class="card-body">
             <h5 class="card-title">{{ destinasi.nama }}</h5>
             <p class="card-text">{{ destinasi.deskripsi }}</p>
-            <router-link :to="{name: 'planner.index', params: { id: destinasi.id }}"><button class="btn btn-primary" style="margin-right: 30px;">Tambah plan</button></router-link>
+            <router-link :to="{name: 'planner.index', params: { id: destinasi.id }}"><button class="btn btn-primary" style="margin-right: 10px;">Tambah plan</button></router-link>
             <router-link :to="{name: 'destinasirating.index', params: { id: destinasi.id }}"><button class="btn btn-light">Read more</button></router-link>
+            <router-link :to="{name: 'destinasi.edit', params: { id: destinasi.id }}"><button class="btn btn-primary" style="margin-right: 10px; margin-top: 10px;">Edit</button></router-link>
+            <button class="btn btn-danger" style="margin-top: 10px;" @click.prevent="postDelete(destinasi.id)">Delete</button>
           </div>
         </div>
       </div>
@@ -95,25 +97,24 @@ import axios from "axios";
           });
       });
   
-      function destinasiDelete(id) {
-              //delete data post by ID
-              axios.delete(`${URL_LINK}/${id}`, config)
-              .then(() => {
-                  //splice posts 
-                  const index = this.destinasis.findIndex(destinasi => destinasi.id === id)
-                  if (~index) {
-                    // if the post exists in array
-                    this.destinasis.splice(index, 1)
-                  }
-               }).catch(error => {
-                   console.log(error.response.data)
-               })
-           
-        }
+      function postDelete(id) {
+      axios.delete(`${URL_LINK}/${id}`, config)
+      .then(() => {
+        axios.get(`${URL_LINK}`, config)
+        .then(response => {
+          alert("Data berhasil dihapus")
+          destinasis.value = response.data.data
+        }).catch(error => {
+          console.log(error.response.data)
+        })
+      }).catch(error => {
+        console.log(error.response.data)
+      })
+    }
       //return
       return {
         destinasis,
-        destinasiDelete,
+        postDelete,
       };
     },
   };

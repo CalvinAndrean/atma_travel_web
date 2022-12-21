@@ -53,23 +53,6 @@
                   {{ validation.deskripsi[0] }}
                 </div>
               </div>
-
-              <div class="form-group mb-3">
-                <input 
-                type="file"
-                id="file"
-                ref="file"
-                @change="handleFileUpload()"
-                class="form-control-file" 
-                placeholder="Masukkan foto"/>
-                <!-- validation -->
-                <div
-                  v-if="validation.foto"
-                  class="mt-2 alert alert-danger"
-                >
-                  {{ validation.foto[0] }}
-                </div>
-              </div>
               <button type="submit" class="btn btn-primary">SIMPAN</button>
             </form>
           </div>
@@ -103,6 +86,12 @@
           //Upload to server
       }
 
+      const config = {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+          }
+      }
+
       //vue router
       const router = useRouter()
       const route = useRoute()
@@ -112,7 +101,7 @@
 
         onMounted(() => {
         //get API from Laravel Backend
-        axios.get(`${URL_LINK}/${id}`)
+        axios.get(`${URL_LINK}/${id}`, config)
             .then((response) => {
             destinasi.nama = response.data.data.nama;
             destinasi.total_rating = response.data.data.total_rating;
@@ -126,29 +115,23 @@
 
       //method store
       function update() {
-        const config = {
-          headers: {
-            'content-type': 'multipart/form-data',
-            'Accept': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-          }
-        }
-        let data = new FormData();
-        data.append('foto', file.value.files[0]);
-        data.append('nama', destinasi.nama);
-        data.append('total_rating', destinasi.total_rating);
-        data.append('deskripsi', destinasi.deskripsi);
-        console.log(file.value.files[0])
-        axios.put(`${URL_LINK}/${route.params.id}`, data, config)
-        .then(() => {
-        //redirect ke post index
+        let nama = destinasi.nama
+        let total_rating = destinasi.total_rating
+        let deskripsi = destinasi.deskripsi
+        axios.post(`${URL_LINK}/${id}`, {
+          nama: nama,
+          total_rating: total_rating,
+          deskripsi: deskripsi,
+        }, config).then(() => {
           router.push({
-            name: 'destinasi.index'
+            name: 'destinasi.index',
+            params: {
+              type: "success",
+              text: "Data Berhasil Diedit"
+            }
           })
         }).catch(error => {
-        //assign state validation with error
-          validation.value = error.response.data
-          console.log(validation.value)
+          console.log(error.response.data)
         })
       }
     //return

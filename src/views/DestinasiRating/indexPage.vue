@@ -30,14 +30,14 @@
                                                         <a href="#"><i class="icofont-ui-rating active"></i></a>
                                                         <a href="#"><i class="icofont-ui-rating"></i></a>
                                                         </span>
-                                                    <h6 class="mb-1"><a class="text-black" href="#">Singh Osahan</a></h6>
+                                                    <h6 class="mb-1 text-black" style="font-size: 20px; font-family: sans-serif;">{{ rating.user.name }}</h6>
                                                     <p class="text-gray">Ini adalah total rating</p>
                                                 </div>
                                                 <div class="reviews-members-body">
                                                     <p>{{ rating.komentar }}</p>
                                                     <div v-if="id_user == rating.user.id">
-                                                        <button class="btn btn-primary" style="margin-right: 10px">Edit</button>
-                                                        <button class="btn btn-danger">Delete</button>
+                                                        <router-link :to="{ name: 'rating.edit' }"><button class="btn btn-primary" style="margin-right: 10px">Edit</button></router-link>
+                                                        <button class="btn btn-danger" @click.prevent="postDelete(rating.id)">Delete</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -46,60 +46,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="reviews-members pt-4 pb-4">
-                                <div class="media">
-                                    <a href="#"><img alt="Generic placeholder image" src="http://bootdey.com/img/Content/avatar/avatar6.png" class="mr-3 rounded-pill"></a>
-                                    <div class="media-body">
-                                        <div class="reviews-members-header">
-                                            <span class="star-rating float-right">
-                                                <a href="#"><i class="icofont-ui-rating active"></i></a>
-                                                <a href="#"><i class="icofont-ui-rating active"></i></a>
-                                                <a href="#"><i class="icofont-ui-rating active"></i></a>
-                                                <a href="#"><i class="icofont-ui-rating active"></i></a>
-                                                <a href="#"><i class="icofont-ui-rating"></i></a>
-                                                </span>
-                                            <h6 class="mb-1"><a class="text-black" href="#">Gurdeep Singh</a></h6>
-                                            <p class="text-gray">Tue, 20 Mar 2020</p>
-                                        </div>
-                                        <div class="reviews-members-body">
-                                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                                        </div>
-                                        <div class="reviews-members-footer">
-                                            <a class="total-like" href="#"><i class="icofont-thumbs-up"></i> 88K</a> <a class="total-like" href="#"><i class="icofont-thumbs-down"></i> 1K</a>
-                                            <span class="total-like-user-main ml-2" dir="rtl">
-                                                <a data-toggle="tooltip" data-placement="top" title="" href="#" data-original-title="Gurdeep Osahan"><img alt="Generic placeholder image" src="http://bootdey.com/img/Content/avatar/avatar5.png" class="total-like-user rounded-pill"></a>
-                                                <a data-toggle="tooltip" data-placement="top" title="" href="#" data-original-title="Gurdeep Singh"><img alt="Generic placeholder image" src="http://bootdey.com/img/Content/avatar/avatar2.png" class="total-like-user rounded-pill"></a>
-                                                <a data-toggle="tooltip" data-placement="top" title="" href="#" data-original-title="Askbootstrap"><img alt="Generic placeholder image" src="http://bootdey.com/img/Content/avatar/avatar3.png" class="total-like-user rounded-pill"></a>
-                                                <a data-toggle="tooltip" data-placement="top" title="" href="#" data-original-title="Osahan"><img alt="Generic placeholder image" src="http://bootdey.com/img/Content/avatar/avatar4.png" class="total-like-user rounded-pill"></a>
-                                                </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <hr>
-                            <a class="text-center w-100 d-block mt-4 font-weight-bold" href="#">See All Reviews</a>
-                        </div>
-                        <div class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
-                            <h5 class="mb-4">Leave Comment</h5>
-                            <p class="mb-2">Rate the Place</p>
-                            <div class="mb-4">
-                                <span class="star-rating">
-                                        <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
-                                        <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
-                                        <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
-                                        <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
-                                        <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
-                                        </span>
-                            </div>
-                            <form>
-                                <div class="form-group">
-                                    <label>Your Comment</label>
-                                    <textarea class="form-control"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn btn-primary btn-sm" type="button"> Submit Comment </button>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -172,13 +119,28 @@ import { reactive, ref, onMounted } from 'vue'
             console.log(error.response.data);
           });
       });
+      function postDelete(id) {
+        axios.delete(`${URL_LINK}/${id}`, config)
+        .then(() => {
+            axios.get(`${URL_LINK}`, config)
+            .then(response => {
+            alert("Data berhasil dihapus")
+            ratings.value = response.data.data
+            }).catch(error => {
+            console.log(error.response.data)
+            })
+        }).catch(error => {
+            console.log(error.response.data)
+        })
+        }
       //return
         return {
           ratings,
           validation,
           router,
           destinasis,
-          id_user
+          id_user,
+          postDelete
         }
       }
     }

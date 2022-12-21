@@ -47,8 +47,8 @@
   </div>
 </template>
 <script>
-  import { reactive, ref } from 'vue'
-  import { useRouter } from 'vue-router'
+  import { reactive, ref, onMounted } from 'vue'
+  import { useRouter, useRoute } from 'vue-router'
   import axios from 'axios'
   export default {
     setup() {
@@ -72,6 +72,11 @@
 
 
       //vue router
+      const config = {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+          }
+        }
 
       const URL_LINK = "http://127.0.0.1:8000/api/ratings"
 
@@ -112,7 +117,7 @@
         ratings,
         validation,
         router,
-        store
+        update
       }
     },
   }

@@ -19,6 +19,7 @@ import LogoutPage from '@/views/LogoutPage.vue'
 // import DestinasiRatingIndex from '@views/DestinasiRating/indexPage.vue'
 // import ProfilePage from '@views/Profile/ProfilePage.vue'
 import RatingCreate from '@/views/Rating/createPage.vue'
+import RatingEdit from '@/views/Rating/editPage.vue'
 
 
 //define a routes
@@ -85,6 +86,11 @@ const routes = [{
                 path: '/destinasi/rating/create',
                 name: 'rating.create',
                 component: RatingCreate
+            },
+            {
+                path: '/destinasi/rating/edit',
+                name: 'rating.edit',
+                component: RatingEdit
             }
         ]
     }

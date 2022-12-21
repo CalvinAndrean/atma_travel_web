@@ -1,5 +1,5 @@
 <template>
-    <div class="page-holder bg-gray-100">
+    <div class="page-holder" style="background-color: rgb(235, 226, 225)">
           <div class="container-fluid px-lg-4 px-xl-5 contentDiv">
                 <!-- Page Header-->
                 <div class="page-header mb-4">
@@ -72,7 +72,7 @@
                             id="file"
                             ref="file"
                             @change="handleFileUpload()"
-                            class="form-control-file" 
+                            class="form-control" 
                             placeholder="Masukkan foto">
                             </div> -->
                         </div>
@@ -158,13 +158,13 @@
       //     }
       //   }
       //   let data = new FormData();
-      //   // data.append('image', file.value.files[0]);
+      //   data.append('image', file.value.files[0]);
       //   data.append('name', users.name);
       //   data.append('username', users.username);
       //   data.append('email', users.email);
-      //   console.log(users.email)
+      //   // console.log(users.email)
       //   data.append('password', users.password);
-      //   // console.log(file.value.files[0])
+      //   console.log(file.value.files[0])
       //   axios.put(`${URL_LINK}/${id}`, data, config)
       //   .then(() => {
       //   //redirect ke post index
@@ -183,13 +183,14 @@
         let username = users.username
         let email = users.email
         let password = users.password
-        axios.put(`${URL_LINK}/${id}`, {
+        axios.post(`${URL_LINK}/${id}`, {
           name: name,
           username: username,
           email: email,
-          password: password
+          password: password,
 
         }, config).then(() => {
+          alert("Data berhasil di update")
           router.push({
             name: 'profile',
             params: {

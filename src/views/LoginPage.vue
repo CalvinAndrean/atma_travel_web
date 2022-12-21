@@ -1,32 +1,34 @@
 <template>
-    <div class="row justify-content-md-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">Login</div>
-                <div class="card-body">
-                    <form @submit.prevent = "login">
-                        <div class="form-group mb-3">
-                            <label for="email">Email address</label>
-                            <input type="email" v-model="users.email" class="form-control" placeholder="Email..">
-                            <!-- validation -->
-                            <div v-if="validation.email" class="mt-2 alert alert-danger">
-                                {{ validation.email}}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" v-model="users.password" class="form-control" placeholder="Password..">
-                        </div>
-                        <div class="mt-4">
-                            <button type="submit" class="btn btn-primary me-4 ms-5">Submit</button>
-                            <router-link :to="{name: 'register'}" class="btn btn-md btn-primary">Register</router-link>
-                        </div>
-                        
-                    </form>
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                class="img-fluid" alt="Phone image">
+            </div>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <form @submit.prevent="login">
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form1Example13">Email address</label>
+                    <input v-model="users.email" type="email" id="form1Example13" class="form-control form-control-lg" placeholder="Masukkan email"/>
                 </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form1Example23">Password</label>
+                    <input v-model="users.password" type="password" id="form1Example23" class="form-control form-control-lg" placeholder="Masukkan password" />
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-right: 20px;">Login</button>
+                <router-link :to="{ name: 'register' }"><button type="submit" class="btn btn-light btn-lg btn-block">Register</button></router-link>
+
+                </form>
+            </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
@@ -58,7 +60,7 @@
                     // console.log(localStorage.getItem('token'))
 
                     router.push({
-                        name: 'Home',
+                        name: 'destinasi.index',
                         params: {
                             type: "success",
                             text: "Berhasil Login"
@@ -82,3 +84,13 @@
         }
     }
 </script>
+
+<style>
+    .divider:after,
+    .divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+    }
+</style>
