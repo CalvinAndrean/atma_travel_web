@@ -14,7 +14,7 @@
 
       <div v-for="(destinasi, id) in destinasis" :key="id" style="display: inline-block; padding: 10px;">
         <div class="card" style="width: 18rem;">
-          <img :src="'http://localhost:8000/storage/users/'+destinasi.foto" alt="{{ destinasi.foto }}" style="width: 286px; height: 200px;">
+          <img :src="'https://vvwxx.com/api/backend-atma_salon/storage/app/users/'+destinasi.foto" alt="{{ destinasi.foto }}" style="width: 286px; height: 200px;">
           <div class="card-body">
             <h5 class="card-title">{{ destinasi.nama }}</h5>
             <p class="card-text">{{ destinasi.deskripsi }}</p>
@@ -52,7 +52,7 @@ import axios from "axios";
           }
       }
 
-      const URL_LINK = "http://127.0.0.1:8000/api/destinasis"
+      const URL_LINK = "https://vvwxx.com/api/backend-atma_travel/public/api/destinasis"
 
       onMounted(() => {
         //get API from Laravel Backend

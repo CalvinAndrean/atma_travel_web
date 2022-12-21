@@ -76,7 +76,7 @@ import { onMounted, reactive, ref } from "vue";
 
       // const message = ref('')
 
-      const URL_LINK = "http://127.0.0.1:8000/api"
+      const URL_LINK = "https://vvwxx.com/api/backend-atma_travel/public/api"
 
       let destinasi = ref([])
       const route = useRoute()

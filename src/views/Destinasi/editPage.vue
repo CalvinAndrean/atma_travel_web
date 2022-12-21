@@ -97,7 +97,7 @@
       const route = useRoute()
       const id = route.params.id
 
-      const URL_LINK = "http://127.0.0.1:8000/api/destinasis"
+      const URL_LINK = "https://vvwxx.com/api/backend-atma_travel/public/api/destinasis"
 
         onMounted(() => {
         //get API from Laravel Backend

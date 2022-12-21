@@ -85,7 +85,7 @@ import { onMounted, reactive } from "vue";
       const route = useRoute()
       const router = useRouter()
 
-      const URL_LINK = "http://127.0.0.1:8000/api/"
+      const URL_LINK = "https://vvwxx.com/api/backend-atma_travel/public/api/"
 
       onMounted(() => {
         // alert(`${URL_LINK}planners/${route.params.id}`)

@@ -43,7 +43,7 @@ export default {
           }
     }
 
-    const URL_LINK = "http://127.0.0.1:8000/api"
+    const URL_LINK = "https://vvwxx.com/api/backend-atma_travel/public/api"
 
     onMounted(() => {
       axios.get(`${URL_LINK}/plannersAll/${localStorage.getItem('user')}`, config)

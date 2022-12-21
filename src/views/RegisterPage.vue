@@ -61,7 +61,7 @@
             // const URL_LINK = "http://127.0.0.1:8000/api"
 
             function register(){
-                axios.post(`http://127.0.0.1:8000/api/register`, {
+                axios.post(`https://vvwxx.com/api/backend-atma_travel/public/api/register`, {
                     name: users.name,
                     email: users.email,
                     password: users.password,

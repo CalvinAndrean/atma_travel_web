@@ -11,7 +11,7 @@
                   <div class="card card-profile mb-4">
                     <div class="card-header" style="background-image: url(https://therichpost.com/wp-content/uploads/2021/05/bootstrap5-carousel-slider-img1.jpg);"> </div>
                     <div class="card-body text-center">
-                        <img class="card-profile-img" :src="'http://localhost:8000/storage/users/'+users.image" alt="Image">
+                        <img class="card-profile-img" :src="'https://vvwxx.com/api/backend-atma_travel/public/storage/users/'+users.image" alt="Image">
                         <h3 class="mb-3">{{ users.name }}</h3>
                         <p class="mb-4">Beginner Traveler</p>
                         <p style="margin-top: -25px;">
@@ -131,7 +131,7 @@
           }
       }
 
-      const URL_LINK = `http://127.0.0.1:8000/api/users`
+      const URL_LINK = `https://vvwxx.com/api/backend-atma_travel/public/api/users`
 
       onMounted(() => {
         //get API from Laravel Backend

@@ -22,7 +22,7 @@
                                     <div class="reviews-members pt-4 pb-4" v-if="rating.destinasi.id == destinasi.id">
                                         <div class="media">
                                             <!-- <div  v-if="rating.id_user == user.id"> -->
-                                                <img alt="User Image" :src="'http://localhost:8000/storage/users/'+rating.user.image" class="mr-3 rounded-pill">
+                                                <img alt="User Image" :src="'https://vvwxx.com/api/backend-atma_travel/public/storage/users/'+rating.user.image" class="mr-3 rounded-pill">
                                             <!-- </div> -->
                                             <div class="media-body">
                                                 <div class="reviews-members-header">
@@ -88,7 +88,7 @@ import { reactive, ref, onMounted } from 'vue'
             'Authorization': 'Bearer ' + localStorage.getItem('token')
           }
         }
-        const URL_LINK = "http://127.0.0.1:8000/api/ratings"
+        const URL_LINK = "https://vvwxx.com/api/backend-atma_travel/public/api/ratings"
   
         //vue router
         const router = useRouter()
@@ -115,7 +115,7 @@ import { reactive, ref, onMounted } from 'vue'
             console.log(error.response.data);
           });
         
-          axios.get(`http://127.0.0.1:8000/api/destinasis`, config)
+          axios.get(`https://vvwxx.com/api/backend-atma_travel/public/api/destinasis`, config)
           .then((response) => {
             //assign state posts with response data
             // usersModel.name = response.data.data.name,
@@ -128,7 +128,7 @@ import { reactive, ref, onMounted } from 'vue'
             console.log(error.response.data);
           });
 
-          axios.get(`http://127.0.0.1:8000/api/destinasis/${id_destinasi}`, config)
+          axios.get(`https://vvwxx.com/api/backend-atma_travel/public/api/destinasis/${id_destinasi}`, config)
           .then((response) => {
             destinasisShow.nama = response.data.data.nama,
             destinasisShow.total_rating = response.data.data.total_rating,
