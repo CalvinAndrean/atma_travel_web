@@ -7,7 +7,9 @@
                     <div class="tab-pane fade active show" id="pills-reviews" role="tabpanel" aria-labelledby="pills-reviews-tab">
                         <div class="bg-white rounded shadow-sm p-4 mb-4 clearfix graph-star-rating">
                             <h5 class="mb-0 mb-4">Deskripsi Destinasi</h5>
-                            
+                            <img :src="'http://localhost:8000/storage/users/'+destinasisShow.foto" alt="foto destinasi">
+                            <h3>{{ destinasisShow.nama }}</h3>
+                            <p>{{ destinasisShow.deskripsi }}</p>
                         </div>
                         
                         <div class="bg-white rounded shadow-sm p-4 mb-4 restaurant-detailed-ratings-and-reviews">
@@ -68,6 +70,12 @@ import { reactive, ref, onMounted } from 'vue'
           id_destinasi: '',
           id_user: ''
         })
+        const destinasisShow = reactive({
+          nama: '',
+          total_rating: '',
+          deskripsi: '',
+          foto: ''
+        })
         let ratings = ref([]);
         let destinasis = ref([]);
         //state validation
@@ -86,8 +94,8 @@ import { reactive, ref, onMounted } from 'vue'
         const router = useRouter()
         const route = useRoute()
         const id_user = localStorage.getItem('user')
-        // const id_destinasi = route.params.id
-        ratingsModel.id_destinasi = route.params.id
+        const id_destinasi = route.params.id
+        ratingsModel.id_destinasi = id_destinasi
         ratingsModel.id_user = id_user
         console.log("Id user yang dibawa : " + id_user)
         console.log("Id destinasi yang dibawa : " + ratingsModel.id_destinasi)
@@ -119,6 +127,18 @@ import { reactive, ref, onMounted } from 'vue'
           .catch((error) => {
             console.log(error.response.data);
           });
+
+          axios.get(`http://127.0.0.1:8000/api/destinasis/${route.params.id}`, config)
+          .then((response) => {
+            destinasisShow.nama = response.data.data.nama,
+            destinasisShow.total_rating = response.data.data.total_rating,
+            destinasisShow.deskripsi = response.data.data.deskripsi,
+            destinasisShow.foto = response.data.data.foto
+            console.log(destinasisShow.foto)
+          })
+          .catch((error) => {
+            console.log(error.response.data);
+          });
       });
       function postDelete(id) {
         axios.delete(`${URL_LINK}/${id}`, config)
@@ -141,7 +161,8 @@ import { reactive, ref, onMounted } from 'vue'
           router,
           destinasis,
           id_user,
-          postDelete
+          postDelete,
+          destinasisShow
         }
       }
     }
