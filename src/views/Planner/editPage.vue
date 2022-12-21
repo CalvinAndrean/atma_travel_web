@@ -108,8 +108,6 @@ import { onMounted, reactive } from "vue";
         let note = planners.note
         let jumlah_orang = planners.jumlah_orang
 
-        alert(`${URL_LINK}planners/${route.params.id}`)
-
         axios.put(`${URL_LINK}planners/${route.params.id}`, {
           tgl: tgl,
           note: note,

@@ -43,22 +43,20 @@
             })
 
             const token = ref('')
-
             const message = ref('')
-
             const router = useRouter()
-
             const validation = ref([])
+            const URL_LINK = "http://127.0.0.1:8000/api"
 
             function login(){
-                axios.post(`http://127.0.0.1:8000/api/login`, {
+                axios.post(`${URL_LINK}/login`, {
                     email: users.email,
                     password: users.password
                 }).then((response) => {
 
                     // save token to local storage
                     localStorage.setItem('token', response.data.access_token)
-
+                    localStorage.setItem('user', response.data.user.id)
                     // console.log(localStorage.getItem('token'))
 
                     router.push({
@@ -73,6 +71,7 @@
                 })
                 .catch(error => {
                     // alert(error.response.data.message)
+                    alert(error.response.data.message)
                     message.value = error.response.data.message
                     validation.value = error.response.data.errors
                })

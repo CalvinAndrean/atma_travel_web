@@ -41,12 +41,12 @@ export default {
             'Accept': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem('token')
           }
-      }
+    }
 
-    const URL_LINK = "http://127.0.0.1:8000/api/planners"
+    const URL_LINK = "http://127.0.0.1:8000/api"
 
     onMounted(() => {
-      axios.get(URL_LINK, config)
+      axios.get(`${URL_LINK}/plannersAll/${localStorage.getItem('user')}`, config)
       .then(response => {
         planners.value = response.data.data
       }).catch(error => {
@@ -55,7 +55,7 @@ export default {
     })
 
     function postDelete(id) {
-      axios.delete(`${URL_LINK}/${id}`, config)
+      axios.delete(`${URL_LINK}/planners/${id}`, config)
       .then(() => {
         axios.get(URL_LINK, config)
         .then(response => {
