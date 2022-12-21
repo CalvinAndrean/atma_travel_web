@@ -59,7 +59,7 @@
 </template>
 <script>
 import { reactive, ref, onMounted } from 'vue'
-    import { useRouter, useRoute } from 'vue-router'
+    import { useRouter } from 'vue-router'
     import axios from 'axios'
     export default {
       setup() {
@@ -92,15 +92,15 @@ import { reactive, ref, onMounted } from 'vue'
   
         //vue router
         const router = useRouter()
-        const route = useRoute()
+        // const route = useRoute()
         const id_user = localStorage.getItem('user')
-        const id_destinasi = route.params.id
+        const id_destinasi = localStorage.getItem('idDestinasi')
         ratingsModel.id_destinasi = id_destinasi
         ratingsModel.id_user = id_user
         console.log("Id user yang dibawa : " + id_user)
         console.log("Id destinasi yang dibawa : " + ratingsModel.id_destinasi)
 
-        localStorage.setItem('local_id_destinasi', route.params.id)
+        
 
         onMounted(() => {
         //get API from Laravel Backend
@@ -128,7 +128,7 @@ import { reactive, ref, onMounted } from 'vue'
             console.log(error.response.data);
           });
 
-          axios.get(`http://127.0.0.1:8000/api/destinasis/${route.params.id}`, config)
+          axios.get(`http://127.0.0.1:8000/api/destinasis/${id_destinasi}`, config)
           .then((response) => {
             destinasisShow.nama = response.data.data.nama,
             destinasisShow.total_rating = response.data.data.total_rating,
@@ -162,7 +162,8 @@ import { reactive, ref, onMounted } from 'vue'
           destinasis,
           id_user,
           postDelete,
-          destinasisShow
+          destinasisShow,
+          id_destinasi
         }
       }
     }

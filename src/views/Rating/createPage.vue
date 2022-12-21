@@ -64,7 +64,7 @@
         //state validation
         const validation = ref([])
         const id_user = localStorage.getItem('user')
-        const id_destinasi = localStorage.getItem('local_id_destinasi')
+        const id_destinasi = localStorage.getItem('idDestinasi')
         ratings.id_destinasi = id_destinasi
         ratings.id_user = id_user
         console.log(ratings.id_user)

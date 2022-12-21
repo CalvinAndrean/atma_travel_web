@@ -19,7 +19,7 @@
             <h5 class="card-title">{{ destinasi.nama }}</h5>
             <p class="card-text">{{ destinasi.deskripsi }}</p>
             <router-link :to="{name: 'planner.create', params: { id: destinasi.id }}"><button class="btn btn-primary" style="margin-right: 10px;" @click="getIdDestinasi(destinasi.id)">Tambah plan</button></router-link>
-            <router-link :to="{name: 'destinasirating.index', params: { id: destinasi.id }}"><button class="btn btn-light">Read more</button></router-link>
+            <router-link :to="{name: 'destinasirating.index', params: { id: destinasi.id }}"><button class="btn btn-light" @click="getIdDestinasi(destinasi.id)">Read more</button></router-link>
             
             <div v-if="destinasi.id_user == id_user">
               <router-link :to="{name: 'destinasi.edit', params: { id: destinasi.id }}"><button class="btn btn-primary" style="margin-right: 10px; margin-top: 10px;">Edit</button></router-link>
