@@ -14,6 +14,9 @@ import PlannerIndex from '@/views/Planner/indexPage.vue'
 import PlannerCreate from '@/views/Planner/createPage.vue'
 import PlannerEdit from '@/views/Planner/editPage.vue'
 import LogoutPage from '@/views/LogoutPage.vue'
+// import DestinasiRatingIndex from '@views/DestinasiRating/indexPage.vue'
+// import ProfilePage from '@views/Profile/ProfilePage.vue'
+
 
 //define a routes
 const routes = [{
@@ -64,6 +67,16 @@ const routes = [{
                 path: '/planner/create',
                 name: 'planner.create',
                 component: PlannerCreate
+            },
+            {
+                // path: '/destinasi/rating',
+                // name: 'destinasirating.index',
+                // component: DestinasiRatingIndex
+            },
+            {
+                // path: '/profile',
+                // name: 'profile.index',
+                // component: ProfilePage
             }
 
         ]
