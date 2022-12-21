@@ -12,10 +12,13 @@
         <h6 class="card-subtitle mb-2 text-muted">{{convertWaktu(planner.tgl)}}</h6>
         <p class="card-text">{{planner.note}}</p>
         <router-link :to="{ name: 'planner.edit', params: { id: planner.id}}" class="card-link">Edit</router-link>
+
         <a href="#" @click.prevent="postDelete(planner.id)" class="card-link">Delete</a>
       </div>
     </div>
   </div>
+
+
 </template>
 
 <script>

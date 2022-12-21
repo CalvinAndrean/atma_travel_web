@@ -89,7 +89,7 @@ import { onMounted, reactive, ref } from "vue";
       }
 
       onMounted(() => {
-        axios.get(`${URL_LINK}/destinasis`)
+        axios.get(`${URL_LINK}/destinasis`, config)
         .then(response => {
           destinasi.value = response.data.data
         }).catch(error => {

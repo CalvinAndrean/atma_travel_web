@@ -5,16 +5,23 @@
                 <div class="card-header">Login</div>
                 <div class="card-body">
                     <form @submit.prevent = "login">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label for="email">Email address</label>
                             <input type="email" v-model="users.email" class="form-control" placeholder="Email..">
+                            <!-- validation -->
+                            <div v-if="validation.email" class="mt-2 alert alert-danger">
+                                {{ validation.email}}
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" v-model="users.password" class="form-control" placeholder="Password..">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <!-- <router-link :to="{name: 'register'}" class="btn btn-md btn-primary">Log In</router-link> -->
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary me-4 ms-5">Submit</button>
+                            <router-link :to="{name: 'register'}" class="btn btn-md btn-primary">Register</router-link>
+                        </div>
+                        
                     </form>
                 </div>
             </div>
@@ -41,6 +48,8 @@
 
             const router = useRouter()
 
+            const validation = ref([])
+
             function login(){
                 axios.post(`http://127.0.0.1:8000/api/login`, {
                     email: users.email,
@@ -50,7 +59,7 @@
                     // save token to local storage
                     localStorage.setItem('token', response.data.access_token)
 
-                    console.log(localStorage.getItem('token'))
+                    // console.log(localStorage.getItem('token'))
 
                     router.push({
                         name: 'Home',
@@ -63,8 +72,9 @@
 
                 })
                 .catch(error => {
+                    // alert(error.response.data.message)
                     message.value = error.response.data.message
-                    console.log(error.response.data.message)
+                    validation.value = error.response.data.errors
                })
             }
 
@@ -72,7 +82,8 @@
                 login,
                 users,
                 message,
-                token
+                token,
+                validation
             }
         }
     }
